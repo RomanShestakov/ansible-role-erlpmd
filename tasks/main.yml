@@ -16,4 +16,7 @@
         mode=0755
 
 - name: ERLPMD | copy erlpmd release into install dir
-  copy: src={{ tmp }}/ dest={{ install_dir }}/
+  copy: src=$item
+        dest={{ install_dir }}/
+  with_fileglob:
+    - {{tmp}}/*
