@@ -15,8 +15,8 @@
         owner={{ ansible_ssh_user }}
         mode=0755
 
-- name: ERLPMD | copy erlpmd release into install dir
-  copy: src=$item
-        dest={{ install_dir }}/
-  with_fileglob:
-    - {{tmp}}/*
+- name: ERLPMD | copy erlpmd ebin to install dir
+  command: cp -r {{ tmp }}/ebin {{ install_dir }}/
+
+- name: ERLPMD | copy erlpmd priv
+  command: cp -r {{ tmp }}/priv {{ install_dir }}/
