@@ -1,0 +1,19 @@
+# file: tasks/main.yml
+
+- name: ERLPMD | checkout erlpmd from github into /tmp/erlpmd
+  git: repo={{ repo_url }}
+       version={{ repo_version}}
+       dest={{ tmp }}
+  register: erlpmd_downloaded
+
+- name: ERLPMD | build erlpmd in /tmp/erlpmd
+  command: make chdir={{ tmp }}
+
+- name: ERLPMD | make install_dir: /usr/lib/erlang/lib/erlpmd-version
+  file: path={{ install_dir }}
+        state=directory
+        owner={{ ansible_ssh_user }}
+        mode=0755
+
+- name: ERLPMD | copy erlpmd release into install dir
+  command: cp -r {{ tmp }} {{ install_dir }}

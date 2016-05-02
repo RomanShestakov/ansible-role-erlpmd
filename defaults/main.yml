@@ -1,0 +1,6 @@
+# defaults/main.yml
+
+tmp: "/tmp/erlpmd"
+repo_url: "https://github.com/RomanShestakov/erlpmd.git"
+repo_version: "3.0.0"
+install_dir: "/usr/lib/erlang/lib/erlpmd/-{{ repo_version }}"

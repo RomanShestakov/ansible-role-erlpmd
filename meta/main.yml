@@ -1,0 +1,18 @@
+# file: meta/main.yml
+
+galaxy_info:
+  author: R.Shestakov
+  company:
+  description: Install erlmpd - a drop-in replacement for epmd written in Erlang
+  min_ansible_version: 1.4
+  license: MIT
+  platforms:
+  - name: Ubuntu
+    versions:
+    - all
+  categories:
+  - system
+
+dependencies:
+  - {role: geerlingguy.git, tags: git}
+  - {role: RomanShestakov.ansible-role-erlang, tags: erlang}
