@@ -9,7 +9,7 @@
 - name: ERLPMD | build erlpmd in /tmp/erlpmd
   command: make chdir={{ tmp }}
 
-- name: ERLPMD | make install_dir: /usr/lib/erlang/lib/erlpmd-version
+- name: ERLPMD | make install_dir - /usr/lib/erlang/lib/erlpmd-version
   file: path={{ install_dir }}
         state=directory
         owner={{ ansible_ssh_user }}
