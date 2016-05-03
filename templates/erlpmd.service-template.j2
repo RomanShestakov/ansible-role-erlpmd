@@ -4,8 +4,8 @@ After=network.target
 Requires=erlpmd.socket
 
 [Service]
-User=erlpmd
-Group=erlpmd
+User={{ user }}
+Group={{ group }}
 Type=notify
 StandardOutput=journal
 StandardError=journal
