@@ -29,7 +29,7 @@
 
 - name: ERLPMD | Ensure the erlpmd working dir exists
   file:
-    name: "{{ /var/erlpmd }}"
+    name: {{ working_dir }}
     state: directory
     mode: 0755
 
