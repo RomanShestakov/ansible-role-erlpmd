@@ -29,7 +29,7 @@
 
 - name: ERLPMD | add erlpmd.socket
   action: template src=erlpmd.socket-template.j2
-          dest=/lib/systemd/system/erlpmd.socket
+          dest=/etc/systemd/system/erlpmd.socket
           owner=root
           mode=644
   # notify:
@@ -39,19 +39,19 @@
 
 - name: ERLPMD | add erlpmd@.socket
   action: template src=erlpmd@.socket-template.j2
-          dest=/lib/systemd/system/erlpmd@.socket
+          dest=/etc/systemd/system/erlpmd@.socket
           owner=root
           mode=644
 
 - name: ERLPMD | add erlpmd.service
   action: template src=erlpmd.service-template.j2
-          dest=/lib/systemd/system/erlpmd.service
+          dest=/etc/systemd/system/erlpmd.service
           owner=root
           mode=644
 
 - name: ERLPMD | add erlpmd@.service
-  action: template src=erlpmd.service-template.j2
-          dest=/lib/systemd/system/erlpmd.service
+  action: template src=erlpmd@.service-template.j2
+          dest=/etc/systemd/system/erlpmd@.service
           owner=root
           mode=644
 
