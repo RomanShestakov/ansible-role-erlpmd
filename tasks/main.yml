@@ -20,3 +20,45 @@
 
 - name: ERLPMD | copy erlpmd priv
   command: cp -r {{ tmp }}/priv {{ install_dir }}/
+
+# - name: ERLPMD | Ensure the systemd directory exists
+#   file:
+#     name: "/etc/systemd/system/magmad.service.d"
+#     state: directory
+#     mode: 0755
+
+- name: ERLPMD | add erlpmd.socket
+  action: template src=erlpmd.socket-template.j2
+          dest=/lib/systemd/system/erlpmd.socket
+          owner=root
+          mode=644
+  # notify:
+  #   - reload systemd
+  #   - restart erlpmd
+
+
+- name: ERLPMD | add erlpmd@.socket
+  action: template src=erlpmd@.socket-template.j2
+          dest=/lib/systemd/system/erlpmd@.socket
+          owner=root
+          mode=644
+
+- name: ERLPMD | add erlpmd.service
+  action: template src=erlpmd.service-template.j2
+          dest=/lib/systemd/system/erlpmd.service
+          owner=root
+          mode=644
+
+- name: ERLPMD | add erlpmd@.service
+  action: template src=erlpmd.service-template.j2
+          dest=/lib/systemd/system/erlpmd.service
+          owner=root
+          mode=644
+
+  # notify:
+  #   - reload systemd
+  #   - restart erlpmd
+
+- name: reload systemd
+  sudo: yes
+  command: systemctl daemon-reload
