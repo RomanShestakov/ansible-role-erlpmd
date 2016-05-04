@@ -23,7 +23,7 @@
 
 # - name: ERLPMD | Ensure the systemd directory exists
 #   file:
-#     name: "/etc/systemd/system/magmad.service.d"
+#     name: "/etc/systemd/system/erlpmd.service.d"
 #     state: directory
 #     mode: 0755
 
@@ -38,33 +38,29 @@
           dest=/etc/systemd/system/erlpmd.socket
           owner=root
           mode=644
-  # notify:
-  #   - reload systemd
-  #   - restart erlpmd
-
-
-- name: ERLPMD | add erlpmd@.socket
-  action: template src=erlpmd@.socket-template.j2
-          dest=/etc/systemd/system/erlpmd@.socket
-          owner=root
-          mode=644
+  notify:
+    - reload systemd
 
 - name: ERLPMD | add erlpmd.service
   action: template src=erlpmd.service-template.j2
           dest=/etc/systemd/system/erlpmd.service
           owner=root
           mode=644
+  notify:
+    - reload systemd
 
-- name: ERLPMD | add erlpmd@.service
-  action: template src=erlpmd@.service-template.j2
-          dest=/etc/systemd/system/erlpmd@.service
-          owner=root
-          mode=644
+- name: ERLPMD | restart erlpmd.service
+  action: service name=erlpmd.socket state=restarted
 
-  # notify:
-  #   - reload systemd
-  #   - restart erlpmd
 
-- name: reload systemd
-  sudo: yes
-  command: systemctl daemon-reload
+# - name: ERLPMD | add erlpmd@.socket
+#   action: template src=erlpmd@.socket-template.j2
+#           dest=/etc/systemd/system/erlpmd@.socket
+#           owner=root
+#           mode=644
+
+# - name: ERLPMD | add erlpmd@.service
+#   action: template src=erlpmd@.service-template.j2
+#           dest=/etc/systemd/system/erlpmd@.service
+#           owner=root
+#           mode=644
