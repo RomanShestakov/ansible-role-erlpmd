@@ -1,7 +1,11 @@
-# ansible-role-erlpmd
+#+TITLE:    ansible-role-erlpmd
+#+AUTHOR:   Roman Shestakov
+#+LANGUAGE: en
+
+* Description
 ansible role for erlpmd - a drop-in replacement for epmd written in Erlang
 
-commands for manual testing:
+* Commands for manual testing:
 systemctl daemon-reload
 systemctl start erlpmd.service
 systemctl status erlpmd.socket
